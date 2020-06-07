@@ -1,0 +1,11 @@
+@import 'https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300';
+
+.grid {
+  margin: 100px 0 0 0;
+  padding: 0;
+  border-top: 1px solid rgb(175, 216, 248);
+  border-left: 1px solid rgb(175, 216, 248);
+  display: inline-block;
+  flex-direction: column;
+  align-items: center;
+}
