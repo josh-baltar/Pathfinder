@@ -1,3 +1,8 @@
 # Pathfinding
+This is a pathfinding visualizer to help understand how your implementations of well-known algorithms really look like as they search!
 
-This is a pathfinding visualizer to help understand how your implementations of well-known algorithms really look like in real time!
+Currently supported algorithms: 
+* Dijkstra's
+
+Maze generation: 
+* random 35% walls
