@@ -1,10 +1,12 @@
 import React, { Component } from "react";
+import { Select } from '@material-ui/core';
+// import { Button } from '@material-ui/core';
 import logo from "./../logo.svg";
 import Node from "./Node/Node";
 import { dijkstra, getNodesInShortestPathOrder } from "../algorithms/dijkstra";
 import "./PathfindingVisualizer.css";
 import "./Buttons.css"
-// import { Button } from '@material-ui/core';
+
 
 
 const START_NODE_ROW = 10;
@@ -100,7 +102,7 @@ export default class PathfindingVisualizer extends Component {
       <>
 
         <div class="box-1">
-          <div class="btn btn-one" /*onClick={() => this.visualizeDijkstra()} */>
+          <div class="btn btn-one btn-one">
             <span>Dijkstra's Algorithm</span>
           </div>
           <div class="btn btn-two" onClick={() => this.visualizeDijkstra()}>

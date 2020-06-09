@@ -1,3 +1,5 @@
+@import 'https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300';
+
 html,
 body {
   width: 100%;
@@ -9,7 +11,7 @@ body {
   flex-wrap: wrap;
   font-family: 'Open Sans Condensed', sans-serif;
   font-size: 18px;
-  letter-spacing: 0.5px;
+  letter-spacing: 1.5px;
 }
 
 div[class*=box] {
@@ -34,9 +36,9 @@ div[class*=box] {
 }
 
 /* 
-========================
-      BUTTON ONE
-========================
+===============================
+      Button 1
+===============================
 */
 .btn-one {
     color: #FFF;
@@ -87,10 +89,9 @@ div[class*=box] {
     transform: scale(0.1, 1);
 }
 
-
 /* 
 ========================
-      BUTTON TWO
+      Button 2
 ========================
 */
 .btn-two {
@@ -141,7 +142,7 @@ div[class*=box] {
 
 /* 
 ========================
-      BUTTON THREE
+      Button 3
 ========================
 */
 .btn-three {

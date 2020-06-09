@@ -28,22 +28,26 @@
 @keyframes visitedAnimation {
   0% {
     transform: scale(0.3);
-    background-color: #fde0e0;
+    background-color: #d6eaff;
+    /* background-color: #fde0e0; // red */
     border-radius: 100%;
   }
 
   50% {
-    background-color: #fdaaaa;
+    background-color:#add6ff;
+    /* background-color: #fdaaaa; */
   }
 
   75% {
     transform: scale(1.1);
-    background-color:	#fdaaaa;
+    background-color:#add6ff;
+    /* background-color:	#fdaaaa; */
   }
 
   100% {
     transform: scale(1);
-    background-color:	#f97c7c;
+    background-color: #84c1ff;
+    /* background-color:	#f97c7c; */
   }
 }
 
@@ -95,7 +99,7 @@
 
   50% {
     transform: scale(1.2);
-    background-color: 	#caffde;
+    background-color: 	#a5e7a1;
   }
 
   100% {
