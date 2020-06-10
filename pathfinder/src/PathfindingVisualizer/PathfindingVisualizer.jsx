@@ -1,13 +1,14 @@
 import React, { Component } from "react";
-import { Select } from '@material-ui/core';
+// import { NativeSelect } from '@material-ui/core';
+// import { InputLabel } from '@material-ui/core';
 // import { Button } from '@material-ui/core';
 import logo from "./../logo.svg";
 import Node from "./Node/Node";
 import { dijkstra, getNodesInShortestPathOrder } from "../algorithms/dijkstra";
+import { dfs } from "../algorithms/dfs";
+import { bfs } from "../algorithms/bfs";
 import "./PathfindingVisualizer.css";
-import "./Buttons.css"
-
-
+import "./Buttons.css";
 
 const START_NODE_ROW = 10;
 const START_NODE_COL = 15;
@@ -29,6 +30,10 @@ export default class PathfindingVisualizer extends Component {
     this.setState({ grid });
   }
 
+  componentDidUpdate() {
+    console.log("Grid Updated");
+  }
+
   handleMouseDown(row, col) {
     const newGrid = getNewGridWithWallToggled(this.state.grid, row, col);
     this.setState({ grid: newGrid, mouseIsPressed: true });
@@ -44,11 +49,11 @@ export default class PathfindingVisualizer extends Component {
     this.setState({ mouseIsPressed: false });
   }
 
-  animateDijkstra(visitedNodesInOrder, nodesInShortestPathOrder) {
+  animateAlgorithm(visitedNodesInOrder, path) {
     for (let i = 0; i <= visitedNodesInOrder.length; i++) {
       if (i === visitedNodesInOrder.length) {
         setTimeout(() => {
-          this.animateShortestPath(nodesInShortestPathOrder);
+          this.animatePath(path);
         }, 10 * i);
         return;
       }
@@ -60,10 +65,10 @@ export default class PathfindingVisualizer extends Component {
     }
   }
 
-  animateShortestPath(nodesInShortestPathOrder) {
-    for (let i = 0; i < nodesInShortestPathOrder.length; i++) {
+  animatePath(path) {
+    for (let i = 0; i < path.length; i++) {
       setTimeout(() => {
-        const node = nodesInShortestPathOrder[i];
+        const node = path[i];
         document.getElementById(`node-${node.row}-${node.col}`).className =
           "node node-shortest-path";
       }, 50 * i);
@@ -71,22 +76,41 @@ export default class PathfindingVisualizer extends Component {
   }
 
   visualizeDijkstra() {
+    console.log("Visualize Dijkstra's");
     const { grid } = this.state;
     const startNode = grid[START_NODE_ROW][START_NODE_COL];
     const finishNode = grid[FINISH_NODE_ROW][FINISH_NODE_COL];
     const visitedNodesInOrder = dijkstra(grid, startNode, finishNode);
     const nodesInShortestPathOrder = getNodesInShortestPathOrder(finishNode);
-    this.animateDijkstra(visitedNodesInOrder, nodesInShortestPathOrder);
+    this.animateAlgorithm(visitedNodesInOrder, nodesInShortestPathOrder);
+  }
+
+  visualizeDFS() {
+    console.log("Visualize DFS");
+    const { grid } = this.state;
+    const startNode = grid[START_NODE_ROW][START_NODE_COL];
+    const finishNode = grid[FINISH_NODE_ROW][FINISH_NODE_COL];
+    const { visitedNodesInOrder, path } = dfs(grid, startNode, finishNode);
+    this.animateAlgorithm(visitedNodesInOrder, path);
+  }
+
+  visualizeBFS() {
+    console.log("Visualize BFS");
+    const { grid } = this.state;
+    const startNode = grid[START_NODE_ROW][START_NODE_COL];
+    const finishNode = grid[FINISH_NODE_ROW][FINISH_NODE_COL];
+    const { visitedNodesInOrder, path } = bfs(grid, startNode, finishNode);
+    this.animateAlgorithm(visitedNodesInOrder, path);
   }
 
   visualize() {
     if (!this.state.algHasRan) {
       this.visualizeDijkstra();
-      this.setState({ algHasRan: true })
+      this.setState({ algHasRan: true });
     } else {
       //clear the board
       const newGrid = clearGrid(this.state.grid);
-      this.setState({ grid: newGrid, algHasRan: false })
+      this.setState({ grid: newGrid, algHasRan: false });
     }
   }
 
@@ -100,15 +124,25 @@ export default class PathfindingVisualizer extends Component {
 
     return (
       <>
-
-        <div class="box-1">
+        <div className="box-1">
+          {/* <InputLabel htmlFor="select">Algorithm</InputLabel>
+          <NativeSelect id="select">
+            <option value="dijkstra">Dijkstra's</option>
+            <option value="dfs">DFS</option>
+          </NativeSelect>
           <div class="btn btn-one btn-one">
             <span>Dijkstra's Algorithm</span>
+          </div> */}
+          <div className="btn btn-two" onClick={() => this.visualizeDFS()}>
+            <span>DFS</span>
           </div>
-          <div class="btn btn-two" onClick={() => this.visualizeDijkstra()}>
-            <span>Start</span>
+          <div className="btn btn-two" onClick={() => this.visualizeBFS()}>
+            <span>BFS</span>
           </div>
-          <div class="btn btn-one" onClick={() => this.generateRand()}>
+          <div className="btn btn-two" onClick={() => this.visualizeDijkstra()}>
+            <span>Dikjstra's Algorithm</span>
+          </div>
+          <div className="btn btn-one" onClick={() => this.generateRand()}>
             <span>Generate Maze</span>
           </div>
 
@@ -183,7 +217,7 @@ const generateRandWalls = (grid) => {
   const newGrid = grid.slice();
   for (let row = 0; row < newGrid.length; row++) {
     for (let col = 0; col < newGrid[0].length; col++) {
-      const makeWall = Math.round(Math.random() * .7)
+      const makeWall = Math.round(Math.random() * 0.7);
       if (makeWall) {
         const node = newGrid[row][col];
         const newNode = {
@@ -196,7 +230,8 @@ const generateRandWalls = (grid) => {
   }
   return newGrid;
 };
-const clearGrid = (grid) => { //complete this
+const clearGrid = (grid) => {
+  //complete this
   const newGrid = grid.slice();
   //remove walls
 
