@@ -1,5 +1,12 @@
+/* Icons made by <a href="https://www.flaticon.com/authors/skyclick" title="Skyclick">Skyclick</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a> */
+/* Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a> */
+
+.instructions {
+  margin: 50px 0 0 0;
+}
+
 .grid {
-  margin: 100px 0 0 0;
+  margin: 10px 0 0 0;
   padding: 0;
   border-top: 1px solid rgb(175, 216, 248);
   border-left: 1px solid rgb(175, 216, 248);

@@ -11,9 +11,9 @@ import "./PathfindingVisualizer.css";
 import "./Buttons.css";
 
 const START_NODE_ROW = 10;
-const START_NODE_COL = 15;
+const START_NODE_COL = 13;
 const FINISH_NODE_ROW = 10;
-const FINISH_NODE_COL = 35;
+const FINISH_NODE_COL = 26;
 
 export default class PathfindingVisualizer extends Component {
   constructor() {
@@ -21,6 +21,7 @@ export default class PathfindingVisualizer extends Component {
     this.state = {
       grid: [],
       algHasRan: false,
+      algorithm: "dijkstra",
       mouseIsPressed: false,
     };
   }
@@ -104,15 +105,22 @@ export default class PathfindingVisualizer extends Component {
   }
 
   visualize() {
-    if (!this.state.algHasRan) {
+    if (this.state.algorithm === "dijkstra") {
       this.visualizeDijkstra();
-      this.setState({ algHasRan: true });
-    } else {
-      //clear the board
-      const newGrid = clearGrid(this.state.grid);
-      this.setState({ grid: newGrid, algHasRan: false });
+    } else if (this.state.algorithm === "dfs") {
+      this.visualizeDFS();
     }
+    // if (!this.state.algHasRan) {
+    //   this.visualizeDijkstra();
+    //   this.setState({ algHasRan: true });
+    // } else {
+    //   //clear the board
+    //   const newGrid = clearGrid(this.state.grid);
+    //   this.setState({ grid: newGrid, algHasRan: false });
+    // }
   }
+
+  setDFS() {}
 
   generateRand() {
     const newGrid = generateRandWalls(this.state.grid);
@@ -133,14 +141,20 @@ export default class PathfindingVisualizer extends Component {
           <div class="btn btn-one btn-one">
             <span>Dijkstra's Algorithm</span>
           </div> */}
-          <div className="btn btn-two" onClick={() => this.visualizeDFS()}>
+          <div
+            className="btn btn-one"
+            onClick={() => this.setState({ algorithm: "dfs" })}
+          >
             <span>DFS</span>
           </div>
-          {/* <div className="btn btn-two" onClick={() => this.visualizeBFS()}>
-            <span>BFS</span>
-          </div> */}
-          <div className="btn btn-two" onClick={() => this.visualizeDijkstra()}>
+          <div
+            className="btn btn-one"
+            onClick={() => this.setState({ algorithm: "dijkstra" })}
+          >
             <span>Dikjstra's Algorithm</span>
+          </div>
+          <div className="btn btn-two" onClick={() => this.visualize()}>
+            <span>Start</span>
           </div>
           <div className="btn btn-one" onClick={() => this.generateRand()}>
             <span>Generate Maze</span>
@@ -148,7 +162,9 @@ export default class PathfindingVisualizer extends Component {
 
           <img src={logo} className="App-logo" alt="logo" />
         </div>
-
+        <div className="instructions">
+          <span>Pick an algorithm and hit Start!</span>
+        </div>
         <div className="grid">
           {grid.map((row, rowIdx) => {
             return (
@@ -184,7 +200,7 @@ const getInitialGrid = () => {
   const grid = [];
   for (let row = 0; row < 20; row++) {
     const currentRow = [];
-    for (let col = 0; col < 50; col++) {
+    for (let col = 0; col < 40; col++) {
       currentRow.push(createNode(col, row));
     }
     grid.push(currentRow);

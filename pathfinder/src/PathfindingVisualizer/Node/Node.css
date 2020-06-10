@@ -1,22 +1,28 @@
 .node {
-  width: 25px;
-  height: 25px;
+  width: 35px;
+  height: 35px;
   border-right: 1px solid rgb(175, 216, 248);
   border-bottom: 1px solid rgb(175, 216, 248);
   display: table-cell;
 }
 
 .node-finish {
-  background-color: #FF6766;
+  background-color: #ff6766;
+  background-image: url("../../images/cake.png");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .node-start {
   background-color: rgb(116, 216, 163);
+  background-image: url("../../images/ghost.png");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .node-visited {
   animation-name: visitedAnimation;
-  animation-duration: .6s;
+  animation-duration: 0.6s;
   animation-timing-function: ease-out;
   animation-delay: 0;
   animation-direction: alternate;
@@ -34,13 +40,13 @@
   }
 
   50% {
-    background-color:#add6ff;
+    background-color: #add6ff;
     /* background-color: #fdaaaa; */
   }
 
   75% {
     transform: scale(1.1);
-    background-color:#add6ff;
+    background-color: #add6ff;
     /* background-color:	#fdaaaa; */
   }
 
@@ -53,17 +59,16 @@
 
 .node-wall {
   animation-name: wallAnimation;
-  animation-duration: .3s;
+  animation-duration: 0.3s;
   animation-timing-function: ease-out;
   animation-delay: 0;
   animation-direction: alternate;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
   animation-play-state: running;
-  
 }
 
-@keyframes wallAnimation { 
+@keyframes wallAnimation {
   0% {
     transform: scale(0.5);
     background-color: rgb(42, 54, 59);
@@ -94,12 +99,16 @@
 @keyframes shortestPath {
   0% {
     transform: scale(0.6);
-    background-color: 	#e1ffe9;
+    background-color: #e1ffe9;
+  }
+  0% {
+    transform: scale(0.6);
+    background-color: #e1ffe9;
   }
 
   50% {
     transform: scale(1.2);
-    background-color: 	#a5e7a1;
+    background-color: #a5e7a1;
   }
 
   100% {
