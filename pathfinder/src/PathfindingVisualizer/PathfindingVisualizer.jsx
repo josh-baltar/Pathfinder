@@ -136,9 +136,9 @@ export default class PathfindingVisualizer extends Component {
           <div className="btn btn-two" onClick={() => this.visualizeDFS()}>
             <span>DFS</span>
           </div>
-          <div className="btn btn-two" onClick={() => this.visualizeBFS()}>
+          {/* <div className="btn btn-two" onClick={() => this.visualizeBFS()}>
             <span>BFS</span>
-          </div>
+          </div> */}
           <div className="btn btn-two" onClick={() => this.visualizeDijkstra()}>
             <span>Dikjstra's Algorithm</span>
           </div>
