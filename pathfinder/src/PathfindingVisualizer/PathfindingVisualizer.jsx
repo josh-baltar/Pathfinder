@@ -20,8 +20,10 @@ export default class PathfindingVisualizer extends Component {
     super();
     this.state = {
       grid: [],
-      algHasRan: false,
-      algorithm: "dijkstra",
+      gridNeedsReset: false,
+      isRunning: false,
+      isSelected: false,
+      algorithm: "none",
       mouseIsPressed: false,
     };
   }
@@ -120,17 +122,15 @@ export default class PathfindingVisualizer extends Component {
     } else if (this.state.algorithm === "dfs") {
       this.visualizeDFS();
     }
-    // if (!this.state.algHasRan) {
+    // if (!this.state.gridNeedsReset) {
     //   this.visualizeDijkstra();
-    //   this.setState({ algHasRan: true });
+    //   this.setState({ gridNeedsReset: true });
     // } else {
     //   //clear the board
     //   const newGrid = clearGrid(this.state.grid);
-    //   this.setState({ grid: newGrid, algHasRan: false });
+    //   this.setState({ grid: newGrid, gridNeedsReset: false });
     // }
   }
-
-  setDFS() {}
 
   generateRand() {
     const newGrid = generateRandWalls(this.state.grid);
@@ -153,12 +153,24 @@ export default class PathfindingVisualizer extends Component {
           </div> */}
           <div
             className="btn btn-one"
+            style={{
+              backgroundColor:
+                this.state.algorithm === "dfs"
+                  ? "rgba(255, 255, 255, 0.1)"
+                  : "rgba(255, 255, 255, 0)",
+            }}
             onClick={() => this.setState({ algorithm: "dfs" })}
           >
             <span>DFS</span>
           </div>
           <div
             className="btn btn-one"
+            style={{
+              backgroundColor:
+                this.state.algorithm === "dijkstra"
+                  ? "rgba(255, 255, 255, 0.1)"
+                  : "rgba(255, 255, 255, 0)",
+            }}
             onClick={() => this.setState({ algorithm: "dijkstra" })}
           >
             <span>Dikjstra's Algorithm</span>

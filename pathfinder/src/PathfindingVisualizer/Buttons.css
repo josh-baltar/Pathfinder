@@ -87,7 +87,7 @@ div[class*="box"] {
   height: 100%;
   z-index: 1;
   transition: all 0.3s;
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(255, 255, 255, 0.05);
 }
 .btn-one:hover::after {
   opacity: 0;
@@ -103,6 +103,7 @@ div[class*="box"] {
   color: #fff;
   transition: all 0.5s;
   position: relative;
+  background-color: #66a182;
 }
 .btn-two span {
   z-index: 2;
