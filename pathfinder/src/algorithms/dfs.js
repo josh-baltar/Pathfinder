@@ -26,6 +26,9 @@ export function dfs(grid, startNode, finishNode) {
       node = path.pop();
     }
   }
+  //push finish node
+  visitedNodesInOrder.push(node);
+  path.push(node);
   return { visitedNodesInOrder, path };
 }
 

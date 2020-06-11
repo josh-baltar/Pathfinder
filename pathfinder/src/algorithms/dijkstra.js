@@ -2,14 +2,10 @@
 // in which they were visited. Also makes nodes point back to their
 // previous node, effectively allowing us to compute the shortest path
 // by backtracking from the finish node.
-// import MinHeap from "./MinHeap"
+
 export function dijkstra(grid, startNode, finishNode) {
   const visitedNodesInOrder = [];
   startNode.distance = 0;
-  // const unvisitedNodes = new MinHeap();
-  // getAllNodes(grid).forEach(element => unvisitedNodes.insert(element))
-  // while (!!unvisitedNodes.data.length) {
-  //   const closestNode = unvisitedNodes.extractMin();
   const unvisitedNodes = getAllNodes(grid);
   while (!!unvisitedNodes.length) {
     sortNodesByDistance(unvisitedNodes);

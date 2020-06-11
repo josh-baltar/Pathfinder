@@ -14,7 +14,8 @@
 }
 
 .node-start {
-  background-color: rgb(116, 216, 163);
+  /* background-color: rgb(116, 216, 163); */
+  background-color: #9cf196;
   background-image: url("../../images/ghost.png");
   background-repeat: no-repeat;
   background-size: cover;
@@ -97,10 +98,6 @@
 }
 
 @keyframes shortestPath {
-  0% {
-    transform: scale(0.6);
-    background-color: #e1ffe9;
-  }
   0% {
     transform: scale(0.6);
     background-color: #e1ffe9;
