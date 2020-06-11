@@ -117,20 +117,18 @@ export default class PathfindingVisualizer extends Component {
     this.animateAlgorithm(visitedNodesInOrder, path);
   }
 
-  visualize() {
-    if (this.state.algorithm === "dijkstra") {
+  visualize(grid) {
+    if (this.state.algorithm === "dijkstra" && !this.state.gridNeedsReset) {
       this.visualizeDijkstra();
-    } else if (this.state.algorithm === "dfs") {
+      this.setState({ gridNeedsReset: true });
+    } else if (this.state.algorithm === "dfs" && !this.state.gridNeedsReset) {
       this.visualizeDFS();
+      this.setState({ gridNeedsReset: true });
+    } else {
+      //clear the board
+      const newGrid = clearGrid();
+      this.setState({ grid: newGrid, gridNeedsReset: false });
     }
-    // if (!this.state.gridNeedsReset) {
-    //   this.visualizeDijkstra();
-    //   this.setState({ gridNeedsReset: true });
-    // } else {
-    //   //clear the board
-    //   const newGrid = clearGrid(this.state.grid);
-    //   this.setState({ grid: newGrid, gridNeedsReset: false });
-    // }
   }
 
   generateRand() {
@@ -171,7 +169,10 @@ export default class PathfindingVisualizer extends Component {
           >
             <span>Dikjstra's Algorithm</span>
           </div>
-          <div className="btn btn-two" onClick={() => this.visualize()}>
+          <div
+            className="btn btn-two"
+            onClick={() => this.visualize(this.state.grid)}
+          >
             <span>Start</span>
           </div>
           <div className="btn btn-one" onClick={() => this.generateRand()}>
@@ -270,12 +271,25 @@ const generateRandWalls = (grid) => {
   }
   return newGrid;
 };
-const clearGrid = (grid) => {
-  //complete this
-  const newGrid = grid.slice();
-  //remove walls
-
-  //make grid white
-
-  return newGrid;
+const clearGrid = () => {
+  const grid = [];
+  for (let row = 0; row < 20; row++) {
+    const currentRow = [];
+    for (let col = 0; col < 40; col++) {
+      const node = createNode(col, row);
+      currentRow.push(node);
+      if (node.isFinish) {
+        document.getElementById(`node-${node.row}-${node.col}`).className =
+          "node node-finish";
+      } else if (node.isStart) {
+        document.getElementById(`node-${node.row}-${node.col}`).className =
+          "node node-start";
+      } else {
+        document.getElementById(`node-${node.row}-${node.col}`).className =
+          "node";
+      }
+    }
+    grid.push(currentRow);
+  }
+  return grid;
 };
