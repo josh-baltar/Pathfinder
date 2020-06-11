@@ -242,7 +242,7 @@ const createNode = (col, row) => {
   };
 };
 const getNewGridWithWallToggled = (grid, row, col) => {
-  if (grid[row][col].isFinish === true) {
+  if (grid[row][col].isFinish === true || grid[row][col].isStart) {
     return grid;
   }
   const newGrid = grid.slice();
