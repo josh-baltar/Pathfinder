@@ -242,7 +242,7 @@ const createNode = (col, row) => {
   };
 };
 const getNewGridWithWallToggled = (grid, row, col) => {
-  if (grid[row][col].isFinish === true || grid[row][col].isStart) {
+  if (grid[row][col].isFinish || grid[row][col].isStart) {
     return grid;
   }
   const newGrid = grid.slice();
@@ -259,7 +259,7 @@ const generateRandWalls = (grid) => {
   for (let row = 0; row < newGrid.length; row++) {
     for (let col = 0; col < newGrid[0].length; col++) {
       const makeWall = Math.round(Math.random() * 0.7);
-      if (makeWall) {
+      if (makeWall && !grid[row][col].isFinish && !grid[row][col].isStart) {
         const node = newGrid[row][col];
         const newNode = {
           ...node,
