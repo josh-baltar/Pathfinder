@@ -241,6 +241,9 @@ const createNode = (col, row) => {
   };
 };
 const getNewGridWithWallToggled = (grid, row, col) => {
+  if (grid[row][col].isFinish === true) {
+    return grid;
+  }
   const newGrid = grid.slice();
   const node = newGrid[row][col];
   const newNode = {
