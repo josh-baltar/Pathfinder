@@ -20,7 +20,6 @@ export default class PathfindingVisualizer extends Component {
       grid: [],
       gridNeedsReset: false,
       isRunning: false,
-      isSelected: false,
       algorithm: "none",
       mouseIsPressed: false,
     };
@@ -51,16 +50,20 @@ export default class PathfindingVisualizer extends Component {
   }
 
   animateAlgorithm(visitedNodesInOrder, path) {
+    const hasSolution = !!visitedNodesInOrder
+      ? visitedNodesInOrder.slice(-1)[0].isFinish
+      : false;
     for (let i = 1; i <= visitedNodesInOrder.length; i++) {
       if (i === visitedNodesInOrder.length) {
         setTimeout(() => {
-          this.animatePath(path);
+          this.animatePath(path, hasSolution);
         }, 10 * i);
         return;
       }
       setTimeout(() => {
         const node = visitedNodesInOrder[i];
-        if (i === visitedNodesInOrder.length - 1) {
+
+        if (i === visitedNodesInOrder.length - 1 && hasSolution) {
           document.getElementById(`node-${node.row}-${node.col}`).className =
             "node node-finish node-visited";
         } else {
@@ -71,11 +74,11 @@ export default class PathfindingVisualizer extends Component {
     }
   }
 
-  animatePath(path) {
+  animatePath(path, hasSolution) {
     for (let i = 1; i < path.length; i++) {
       setTimeout(() => {
         const node = path[i];
-        if (i === path.length - 1) {
+        if (i === path.length - 1 && hasSolution) {
           document.getElementById(`node-${node.row}-${node.col}`).className =
             "node node-finish node-shortest-path";
         } else {
@@ -137,7 +140,6 @@ export default class PathfindingVisualizer extends Component {
 
   render() {
     const { grid, mouseIsPressed } = this.state;
-
     return (
       <>
         <div className="box-1">
@@ -148,6 +150,8 @@ export default class PathfindingVisualizer extends Component {
                 this.state.algorithm === "dfs"
                   ? "rgba(255, 255, 255, 0.1)"
                   : "rgba(255, 255, 255, 0)",
+              textDecoration:
+                this.state.algorithm === "dfs" ? "underline" : "none",
             }}
             onClick={() => this.setState({ algorithm: "dfs" })}
           >
@@ -160,6 +164,8 @@ export default class PathfindingVisualizer extends Component {
                 this.state.algorithm === "dijkstra"
                   ? "rgba(255, 255, 255, 0.1)"
                   : "rgba(255, 255, 255, 0)",
+              textDecoration:
+                this.state.algorithm === "dijkstra" ? "underline" : "none",
             }}
             onClick={() => this.setState({ algorithm: "dijkstra" })}
           >

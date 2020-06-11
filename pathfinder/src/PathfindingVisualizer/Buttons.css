@@ -73,6 +73,7 @@ div[class*="box"] {
 }
 .btn-one:hover span {
   letter-spacing: 2px;
+  text-decoration: underline;
 }
 .btn-one:hover::before {
   opacity: 1;
