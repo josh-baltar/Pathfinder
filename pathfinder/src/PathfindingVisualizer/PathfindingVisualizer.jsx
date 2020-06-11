@@ -1,8 +1,6 @@
 import React, { Component } from "react";
-// import { NativeSelect } from '@material-ui/core';
-// import { InputLabel } from '@material-ui/core';
-// import { Button } from '@material-ui/core';
-import logo from "./../logo.svg";
+import logo from "./../images/logo.svg";
+import github from "./../images/GitHub-Mark-Light-120px-plus.png";
 import Node from "./Node/Node";
 import { dijkstra, getNodesInShortestPathOrder } from "../algorithms/dijkstra";
 import { dfs } from "../algorithms/dfs";
@@ -143,14 +141,6 @@ export default class PathfindingVisualizer extends Component {
     return (
       <>
         <div className="box-1">
-          {/* <InputLabel htmlFor="select">Algorithm</InputLabel>
-          <NativeSelect id="select">
-            <option value="dijkstra">Dijkstra's</option>
-            <option value="dfs">DFS</option>
-          </NativeSelect>
-          <div class="btn btn-one btn-one">
-            <span>Dijkstra's Algorithm</span>
-          </div> */}
           <div
             className="btn btn-one"
             style={{
@@ -183,6 +173,9 @@ export default class PathfindingVisualizer extends Component {
           </div>
 
           <img src={logo} className="App-logo" alt="logo" />
+          <a href="https://github.com/jnbaltar" target="_blank">
+            <img src={github} className="github-logo" alt="logo" />
+          </a>
         </div>
         <div className="instructions">
           <span>Pick an algorithm and hit Start!</span>
