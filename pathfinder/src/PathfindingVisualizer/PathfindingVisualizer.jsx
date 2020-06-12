@@ -20,7 +20,7 @@ export default class PathfindingVisualizer extends Component {
       grid: [],
       gridNeedsReset: false,
       isRunning: false,
-      algorithm: "none",
+      algorithm: "bfs",
       mouseIsPressed: false,
     };
   }
@@ -129,6 +129,9 @@ export default class PathfindingVisualizer extends Component {
     } else if (this.state.algorithm === "dfs" && !this.state.gridNeedsReset) {
       this.visualizeDFS();
       this.setState({ gridNeedsReset: true });
+    } else if (this.state.algorithm === "bfs" && !this.state.gridNeedsReset) {
+      this.visualizeBFS();
+      this.setState({ gridNeedsReset: true });
     } else {
       //clear the board
       const newGrid = clearGrid();
@@ -159,6 +162,20 @@ export default class PathfindingVisualizer extends Component {
             onClick={() => this.setState({ algorithm: "dfs" })}
           >
             <span>DFS</span>
+          </div>
+          <div
+            className="btn btn-one"
+            style={{
+              backgroundColor:
+                this.state.algorithm === "bfs"
+                  ? "rgba(255, 255, 255, 0.1)"
+                  : "rgba(255, 255, 255, 0)",
+              textDecoration:
+                this.state.algorithm === "bfs" ? "underline" : "none",
+            }}
+            onClick={() => this.setState({ algorithm: "bfs" })}
+          >
+            <span>BFS</span>
           </div>
           <div
             className="btn btn-one"

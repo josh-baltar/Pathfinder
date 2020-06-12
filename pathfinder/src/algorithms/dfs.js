@@ -11,13 +11,9 @@ export function dfs(grid, startNode, finishNode) {
     visitedNodesInOrder.push(node);
     node.isVisited = true;
     for (let i = 0; i < unvisitedNeighbors.length; i++) {
-      if (node.isWall) {
-        continue;
-      } else {
-        path.push(node);
-        node = unvisitedNeighbors[i];
-        break;
-      }
+      path.push(node);
+      node = unvisitedNeighbors[i];
+      break;
     }
     if (unvisitedNeighbors.length === 0) {
       if (path.length === 0) {
