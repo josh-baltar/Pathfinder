@@ -53,7 +53,7 @@ export default class PathfindingVisualizer extends Component {
     const hasSolution = !!visitedNodesInOrder
       ? visitedNodesInOrder.slice(-1)[0].isFinish
       : false;
-    for (let i = 1; i <= visitedNodesInOrder.length; i++) {
+    for (let i = 0; i <= visitedNodesInOrder.length; i++) {
       if (i === visitedNodesInOrder.length) {
         setTimeout(() => {
           this.animatePath(path, hasSolution);
@@ -62,8 +62,10 @@ export default class PathfindingVisualizer extends Component {
       }
       setTimeout(() => {
         const node = visitedNodesInOrder[i];
-
-        if (i === visitedNodesInOrder.length - 1 && hasSolution) {
+        if (i === 0) {
+          document.getElementById(`node-${node.row}-${node.col}`).className =
+            "node node-start node-visited";
+        } else if (i === visitedNodesInOrder.length - 1 && hasSolution) {
           document.getElementById(`node-${node.row}-${node.col}`).className =
             "node node-finish node-visited";
         } else {
@@ -75,10 +77,13 @@ export default class PathfindingVisualizer extends Component {
   }
 
   animatePath(path, hasSolution) {
-    for (let i = 1; i < path.length; i++) {
+    for (let i = 0; i < path.length; i++) {
       setTimeout(() => {
         const node = path[i];
-        if (i === path.length - 1 && hasSolution) {
+        if (i === 0) {
+          document.getElementById(`node-${node.row}-${node.col}`).className =
+            "node node-start node-shortest-path";
+        } else if (i === path.length - 1 && hasSolution) {
           document.getElementById(`node-${node.row}-${node.col}`).className =
             "node node-finish node-shortest-path";
         } else {
