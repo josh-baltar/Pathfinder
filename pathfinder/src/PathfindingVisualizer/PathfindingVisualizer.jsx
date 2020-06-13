@@ -163,7 +163,7 @@ export default class PathfindingVisualizer extends Component {
           >
             <span>DFS</span>
           </div>
-          <div
+          {/* <div
             className="btn btn-one"
             style={{
               backgroundColor:
@@ -176,7 +176,7 @@ export default class PathfindingVisualizer extends Component {
             onClick={() => this.setState({ algorithm: "bfs" })}
           >
             <span>BFS</span>
-          </div>
+          </div> */}
           <div
             className="btn btn-one"
             style={{
