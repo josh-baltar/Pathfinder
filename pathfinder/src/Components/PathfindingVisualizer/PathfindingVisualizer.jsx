@@ -50,8 +50,8 @@ export default class PathfindingVisualizer extends Component {
     this.setState({ mouseIsPressed: false });
   }
 
-  handleButton = (algorithm) => {
-    switch (algorithm) {
+  handleButton = (event) => {
+    switch (event) {
       case "dfs":
         this.setState({ algorithm: "dfs" });
         break;
@@ -83,7 +83,7 @@ export default class PathfindingVisualizer extends Component {
         }
         break;
       default:
-        console.warn("handle button has no such state: " + algorithm);
+        console.warn("handle button has no such state: " + event);
         break;
     }
   };

@@ -15,11 +15,10 @@ class Buttons extends Component {
           className="btn btn-one"
           style={{
             backgroundColor:
-              this.props.algorithm === "dfs"
+              this.props.event === "dfs"
                 ? "rgba(255, 255, 255, 0.1)"
                 : "rgba(255, 255, 255, 0)",
-            textDecoration:
-              this.props.algorithm === "dfs" ? "underline" : "none",
+            textDecoration: this.props.event === "dfs" ? "underline" : "none",
           }}
           onClick={() => this.props.handleButton("dfs")}
         >
@@ -29,11 +28,11 @@ class Buttons extends Component {
             className="btn btn-one"
             style={{
               backgroundColor:
-                this.props.algorithm === "bfs"
+                this.props.event === "bfs"
                   ? "rgba(255, 255, 255, 0.1)"
                   : "rgba(255, 255, 255, 0)",
               textDecoration:
-                this.props.algorithm === "bfs" ? "underline" : "none",
+                this.props.event === "bfs" ? "underline" : "none",
             }}
             onClick={() => this.props.handleButton("bfs")}
           >
@@ -43,11 +42,11 @@ class Buttons extends Component {
           className="btn btn-one"
           style={{
             backgroundColor:
-              this.props.algorithm === "dijkstra"
+              this.props.event === "dijkstra"
                 ? "rgba(255, 255, 255, 0.1)"
                 : "rgba(255, 255, 255, 0)",
             textDecoration:
-              this.props.algorithm === "dijkstra" ? "underline" : "none",
+              this.props.event === "dijkstra" ? "underline" : "none",
           }}
           onClick={() => this.props.handleButton("dijkstra")}
         >
