@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "/pathfinding/static/css/main.49543b5e.chunk.css",
-    "main.js": "/pathfinding/static/js/main.f0fbe659.chunk.js",
-    "main.js.map": "/pathfinding/static/js/main.f0fbe659.chunk.js.map",
-    "runtime-main.js": "/pathfinding/static/js/runtime-main.1c892aaf.js",
-    "runtime-main.js.map": "/pathfinding/static/js/runtime-main.1c892aaf.js.map",
-    "static/js/2.7946b8af.chunk.js": "/pathfinding/static/js/2.7946b8af.chunk.js",
-    "static/js/2.7946b8af.chunk.js.map": "/pathfinding/static/js/2.7946b8af.chunk.js.map",
-    "index.html": "/pathfinding/index.html",
-    "precache-manifest.d76d19aea4f61663bd05eb38b860cc73.js": "/pathfinding/precache-manifest.d76d19aea4f61663bd05eb38b860cc73.js",
-    "service-worker.js": "/pathfinding/service-worker.js",
-    "static/css/main.49543b5e.chunk.css.map": "/pathfinding/static/css/main.49543b5e.chunk.css.map",
-    "static/js/2.7946b8af.chunk.js.LICENSE.txt": "/pathfinding/static/js/2.7946b8af.chunk.js.LICENSE.txt",
-    "static/media/Node.css": "/pathfinding/static/media/ghost.c1899c99.png",
-    "static/media/logo.svg": "/pathfinding/static/media/logo.5d5d9eef.svg"
+    "main.css": "/pathfinder/static/css/main.64fe3a8b.chunk.css",
+    "main.js": "/pathfinder/static/js/main.fc83d5cd.chunk.js",
+    "main.js.map": "/pathfinder/static/js/main.fc83d5cd.chunk.js.map",
+    "runtime-main.js": "/pathfinder/static/js/runtime-main.73e5f5bb.js",
+    "runtime-main.js.map": "/pathfinder/static/js/runtime-main.73e5f5bb.js.map",
+    "static/js/2.7946b8af.chunk.js": "/pathfinder/static/js/2.7946b8af.chunk.js",
+    "static/js/2.7946b8af.chunk.js.map": "/pathfinder/static/js/2.7946b8af.chunk.js.map",
+    "index.html": "/pathfinder/index.html",
+    "precache-manifest.47aa0386085046e8fa53d221948a5f37.js": "/pathfinder/precache-manifest.47aa0386085046e8fa53d221948a5f37.js",
+    "service-worker.js": "/pathfinder/service-worker.js",
+    "static/css/main.64fe3a8b.chunk.css.map": "/pathfinder/static/css/main.64fe3a8b.chunk.css.map",
+    "static/js/2.7946b8af.chunk.js.LICENSE.txt": "/pathfinder/static/js/2.7946b8af.chunk.js.LICENSE.txt",
+    "static/media/Node.css": "/pathfinder/static/media/ghost.c1899c99.png",
+    "static/media/logo.svg": "/pathfinder/static/media/logo.5d5d9eef.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.1c892aaf.js",
+    "static/js/runtime-main.73e5f5bb.js",
     "static/js/2.7946b8af.chunk.js",
-    "static/css/main.49543b5e.chunk.css",
-    "static/js/main.f0fbe659.chunk.js"
+    "static/css/main.64fe3a8b.chunk.css",
+    "static/js/main.fc83d5cd.chunk.js"
   ]
 }
