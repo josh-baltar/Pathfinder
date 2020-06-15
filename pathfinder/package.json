@@ -2,7 +2,7 @@
   "name": "pathfinder",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://jnbaltar.github.io/Pathfinding",
+  "homepage": "http://jnbaltar.github.io/pathfinder",
   "dependencies": {
     "@material-ui/core": "^4.10.1",
     "@testing-library/jest-dom": "^4.2.4",
