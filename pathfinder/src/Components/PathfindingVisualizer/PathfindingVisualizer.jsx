@@ -1,10 +1,13 @@
 import React, { Component } from "react";
 import logo from "./../images/logo.svg";
 import github from "./../images/GitHub-Mark-Light-120px-plus.png";
-import Node from "./Node/Node";
-import { dijkstra, getNodesInShortestPathOrder } from "../algorithms/dijkstra";
-import { dfs } from "../algorithms/dfs";
-import { bfs } from "../algorithms/bfs";
+import Node from "../Node/Node";
+import {
+  dijkstra,
+  getNodesInShortestPathOrder,
+} from "../../algorithms/dijkstra";
+import { dfs } from "../../algorithms/dfs";
+import { bfs } from "../../algorithms/bfs";
 import "./PathfindingVisualizer.css";
 import "./Buttons.css";
 

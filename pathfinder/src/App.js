@@ -1,7 +1,7 @@
 import React from "react";
 import { Helmet } from "react-helmet";
 import "./App.css";
-import PathfindingVisualizer from "./PathfindingVisualizer/PathfindingVisualizer";
+import PathfindingVisualizer from "./Components/PathfindingVisualizer/PathfindingVisualizer";
 
 const TITLE = "Josh's Pathfinder";
 
