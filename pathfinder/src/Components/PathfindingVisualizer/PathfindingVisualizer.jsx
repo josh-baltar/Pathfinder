@@ -1,15 +1,13 @@
 import React, { Component } from "react";
-import logo from "./../images/logo.svg";
-import github from "./../images/GitHub-Mark-Light-120px-plus.png";
+import "./PathfindingVisualizer.css";
 import Node from "../Node/Node";
+import Buttons from "../Buttons/Buttons";
+import { dfs } from "../../algorithms/dfs";
+import { bfs } from "../../algorithms/bfs";
 import {
   dijkstra,
   getNodesInShortestPathOrder,
 } from "../../algorithms/dijkstra";
-import { dfs } from "../../algorithms/dfs";
-import { bfs } from "../../algorithms/bfs";
-import "./PathfindingVisualizer.css";
-import "./Buttons.css";
 
 const START_NODE_ROW = 10;
 const START_NODE_COL = 13;
@@ -51,6 +49,44 @@ export default class PathfindingVisualizer extends Component {
   handleMouseUp() {
     this.setState({ mouseIsPressed: false });
   }
+
+  handleButton = (algorithm) => {
+    switch (algorithm) {
+      case "dfs":
+        this.setState({ algorithm: "dfs" });
+        break;
+      case "bfs":
+        this.setState({ algorithm: "bfs" });
+        break;
+      case "dijkstra":
+        this.setState({ algorithm: "dijkstra" });
+        break;
+      case "mazeRand":
+        this.generateRand();
+        break;
+      case "start":
+        if (!this.state.gridNeedsReset) {
+          if (this.state.algorithm === "dijkstra") {
+            this.visualizeDijkstra();
+            this.setState({ gridNeedsReset: true });
+          } else if (this.state.algorithm === "dfs") {
+            this.visualizeDFS();
+            this.setState({ gridNeedsReset: true });
+          } else if (this.state.algorithm === "bfs") {
+            this.visualizeBFS();
+            this.setState({ gridNeedsReset: true });
+          }
+        } else {
+          //clear the board
+          const newGrid = clearGrid();
+          this.setState({ grid: newGrid, gridNeedsReset: false });
+        }
+        break;
+      default:
+        console.warn("handle button has no such state: " + algorithm);
+        break;
+    }
+  };
 
   animateAlgorithm(visitedNodesInOrder, path) {
     const hasSolution = !!visitedNodesInOrder
@@ -125,23 +161,6 @@ export default class PathfindingVisualizer extends Component {
     this.animateAlgorithm(visitedNodesInOrder, path);
   }
 
-  visualize(grid) {
-    if (this.state.algorithm === "dijkstra" && !this.state.gridNeedsReset) {
-      this.visualizeDijkstra();
-      this.setState({ gridNeedsReset: true });
-    } else if (this.state.algorithm === "dfs" && !this.state.gridNeedsReset) {
-      this.visualizeDFS();
-      this.setState({ gridNeedsReset: true });
-    } else if (this.state.algorithm === "bfs" && !this.state.gridNeedsReset) {
-      this.visualizeBFS();
-      this.setState({ gridNeedsReset: true });
-    } else {
-      //clear the board
-      const newGrid = clearGrid();
-      this.setState({ grid: newGrid, gridNeedsReset: false });
-    }
-  }
-
   generateRand() {
     const newGrid = generateRandWalls(this.state.grid);
     this.setState({ grid: newGrid, mouseIsPressed: true });
@@ -151,64 +170,12 @@ export default class PathfindingVisualizer extends Component {
     const { grid, mouseIsPressed } = this.state;
     return (
       <>
-        <div className="box-1">
-          <div
-            className="btn btn-one"
-            style={{
-              backgroundColor:
-                this.state.algorithm === "dfs"
-                  ? "rgba(255, 255, 255, 0.1)"
-                  : "rgba(255, 255, 255, 0)",
-              textDecoration:
-                this.state.algorithm === "dfs" ? "underline" : "none",
-            }}
-            onClick={() => this.setState({ algorithm: "dfs" })}
-          >
-            <span>DFS</span>
-          </div>
-          {/* <div
-            className="btn btn-one"
-            style={{
-              backgroundColor:
-                this.state.algorithm === "bfs"
-                  ? "rgba(255, 255, 255, 0.1)"
-                  : "rgba(255, 255, 255, 0)",
-              textDecoration:
-                this.state.algorithm === "bfs" ? "underline" : "none",
-            }}
-            onClick={() => this.setState({ algorithm: "bfs" })}
-          >
-            <span>BFS</span>
-          </div> */}
-          <div
-            className="btn btn-one"
-            style={{
-              backgroundColor:
-                this.state.algorithm === "dijkstra"
-                  ? "rgba(255, 255, 255, 0.1)"
-                  : "rgba(255, 255, 255, 0)",
-              textDecoration:
-                this.state.algorithm === "dijkstra" ? "underline" : "none",
-            }}
-            onClick={() => this.setState({ algorithm: "dijkstra" })}
-          >
-            <span>Dikjstra's Algorithm</span>
-          </div>
-          <div
-            className="btn btn-two"
-            onClick={() => this.visualize(this.state.grid)}
-          >
-            <span>Start</span>
-          </div>
-          <div className="btn btn-one" onClick={() => this.generateRand()}>
-            <span>Generate Maze</span>
-          </div>
+        {/* Buttons */}
+        <Buttons
+          handleButton={this.handleButton}
+          algorithm={this.state.algorithm}
+        />
 
-          <img src={logo} className="App-logo" alt="logo" />
-          <a href="https://github.com/jnbaltar" target="_blank">
-            <img src={github} className="github-logo" alt="logo" />
-          </a>
-        </div>
         <div className="instructions">
           <span>Pick an algorithm and hit Start!</span>
         </div>
