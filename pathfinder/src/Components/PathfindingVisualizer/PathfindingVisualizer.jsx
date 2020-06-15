@@ -50,7 +50,7 @@ export default class PathfindingVisualizer extends Component {
     this.setState({ mouseIsPressed: false });
   }
 
-  handleButton = (event) => {
+  handleButtons = (event) => {
     switch (event) {
       case "dfs":
         this.setState({ algorithm: "dfs" });
@@ -172,7 +172,7 @@ export default class PathfindingVisualizer extends Component {
       <>
         {/* Buttons */}
         <Buttons
-          handleButton={this.handleButton}
+          handleButtons={this.handleButtons}
           algorithm={this.state.algorithm}
         />
 
