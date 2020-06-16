@@ -4,8 +4,10 @@ This is a pathfinding visualizer to help understand how your implementations of 
 
 Currently supported algorithms:
 
-- Dijkstra's
 - DFS
+- BFS
+- Dijkstra's
+- A\* Search
 
 Maze generation:
 

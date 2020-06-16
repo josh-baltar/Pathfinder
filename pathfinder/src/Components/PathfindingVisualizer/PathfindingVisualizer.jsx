@@ -108,10 +108,13 @@ export default class PathfindingVisualizer extends Component {
       }
       setTimeout(() => {
         const node = visitedNodesInOrder[i];
-        if (i === 0) {
+        if (hasSolution && i === 0) {
           document.getElementById(`node-${node.row}-${node.col}`).className =
             "node node-start node-visited";
-        } else if (i === visitedNodesInOrder.length - 1 && hasSolution) {
+        } else if (!hasSolution && i === visitedNodesInOrder.length - 2) {
+          document.getElementById(`node-${node.row}-${node.col}`).className =
+            "node node-visited node-sad";
+        } else if (hasSolution && i === visitedNodesInOrder.length - 1) {
           document.getElementById(`node-${node.row}-${node.col}`).className =
             "node node-finish node-visited";
         } else {
@@ -126,13 +129,13 @@ export default class PathfindingVisualizer extends Component {
     for (let i = 0; i < path.length; i++) {
       setTimeout(() => {
         const node = path[i];
-        if (i === 0) {
+        if (hasSolution && i === path.length - 2) {
           document.getElementById(`node-${node.row}-${node.col}`).className =
             "node node-start node-shortest-path";
-        } else if (i === path.length - 1 && hasSolution) {
+        } else if (hasSolution && i === path.length - 1) {
           document.getElementById(`node-${node.row}-${node.col}`).className =
             "node node-finish node-shortest-path";
-        } else {
+        } else if (hasSolution) {
           document.getElementById(`node-${node.row}-${node.col}`).className =
             "node node-shortest-path";
         }
@@ -155,7 +158,7 @@ export default class PathfindingVisualizer extends Component {
     const startNode = grid[START_NODE_ROW][START_NODE_COL];
     const finishNode = grid[FINISH_NODE_ROW][FINISH_NODE_COL];
     const visitedNodesInOrder = bfs(grid, startNode, finishNode);
-    const path = getNodesInShortestPathOrder(finishNode);
+    const path = getNodesInShortestPathOrder(startNode, finishNode);
     this.animateAlgorithm(visitedNodesInOrder, path);
   }
 
@@ -165,7 +168,10 @@ export default class PathfindingVisualizer extends Component {
     const startNode = grid[START_NODE_ROW][START_NODE_COL];
     const finishNode = grid[FINISH_NODE_ROW][FINISH_NODE_COL];
     const visitedNodesInOrder = dijkstra(grid, startNode, finishNode);
-    const nodesInShortestPathOrder = getNodesInShortestPathOrder(finishNode);
+    const nodesInShortestPathOrder = getNodesInShortestPathOrder(
+      startNode,
+      finishNode
+    );
     this.animateAlgorithm(visitedNodesInOrder, nodesInShortestPathOrder);
   }
 
@@ -175,7 +181,10 @@ export default class PathfindingVisualizer extends Component {
     const startNode = grid[START_NODE_ROW][START_NODE_COL];
     const finishNode = grid[FINISH_NODE_ROW][FINISH_NODE_COL];
     const visitedNodesInOrder = astar(grid, startNode, finishNode);
-    const nodesInShortestPathOrder = getNodesInShortestPathOrder(finishNode);
+    const nodesInShortestPathOrder = getNodesInShortestPathOrder(
+      startNode,
+      finishNode
+    );
     this.animateAlgorithm(visitedNodesInOrder, nodesInShortestPathOrder);
   }
 

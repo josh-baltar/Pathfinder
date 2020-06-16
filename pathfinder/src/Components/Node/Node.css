@@ -20,6 +20,13 @@
   background-size: cover;
 }
 
+.node-sad {
+  background-color: #84c1ff;
+  background-image: url("../../images/ghost-sad.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 .node-visited {
   animation-name: visitedAnimation;
   animation-duration: 0.6s;
