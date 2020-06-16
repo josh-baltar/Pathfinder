@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import Typography from "@material-ui/core/Typography";
+import Slider from "@material-ui/core/Slider";
 import "./PathfindingVisualizer.css";
 import Node from "../Node/Node";
 import Buttons from "../Buttons/Buttons";
@@ -14,9 +16,9 @@ const ROWS = Math.floor(window.innerHeight / 60);
 const COLS = Math.floor(window.innerWidth / 50);
 
 const START_NODE_ROW = Math.floor(ROWS / 2);
-const START_NODE_COL = Math.floor(COLS / 3);
+const START_NODE_COL = Math.floor(COLS / 5);
 const FINISH_NODE_ROW = Math.floor(ROWS / 2);
-const FINISH_NODE_COL = Math.floor((COLS * 2) / 3);
+const FINISH_NODE_COL = Math.floor((COLS * 4) / 5);
 
 export default class PathfindingVisualizer extends Component {
   constructor() {
@@ -27,6 +29,8 @@ export default class PathfindingVisualizer extends Component {
       isRunning: false,
       algorithm: "dijkstra",
       mouseIsPressed: false,
+      speed: 80,
+      setSpeed: 40,
     };
   }
 
@@ -98,6 +102,11 @@ export default class PathfindingVisualizer extends Component {
     }
   };
 
+  changeSpeed(speed) {
+    const setSpeed = 120 - speed;
+    this.setState({ speed: speed, setSpeed: setSpeed });
+  }
+
   animateAlgorithm(visitedNodesInOrder, path) {
     const hasSolution = !!visitedNodesInOrder
       ? visitedNodesInOrder.slice(-1)[0].isFinish
@@ -106,7 +115,7 @@ export default class PathfindingVisualizer extends Component {
       if (i === visitedNodesInOrder.length) {
         setTimeout(() => {
           this.animatePath(path, hasSolution);
-        }, 10 * i);
+        }, this.state.speed * i);
         return;
       }
       setTimeout(() => {
@@ -126,7 +135,7 @@ export default class PathfindingVisualizer extends Component {
           document.getElementById(`node-${node.row}-${node.col}`).className =
             "node node-visited";
         }
-      }, 10 * i);
+      }, this.state.speed * i);
     }
   }
 
@@ -144,7 +153,7 @@ export default class PathfindingVisualizer extends Component {
           document.getElementById(`node-${node.row}-${node.col}`).className =
             "node node-shortest-path";
         }
-      }, 50 * i);
+      }, this.state.speed * i);
     }
   }
 
@@ -238,6 +247,23 @@ export default class PathfindingVisualizer extends Component {
             );
           })}
         </div>
+        <div className="discrete-slider" width="300">
+          <Typography id="discrete-slider-text" gutterBottom>
+            Speed
+          </Typography>
+          <Slider
+            value={this.state.speed}
+            onChange={(e, val) => this.changeSpeed(val)}
+            defaultValue={30}
+            getAriaValueText={valuetext}
+            aria-labelledby="discrete-slider"
+            valueLabelDisplay="auto"
+            step={10}
+            marks={marks}
+            min={10}
+            max={100}
+          />
+        </div>
       </>
     );
   }
@@ -317,3 +343,16 @@ const clearGrid = () => {
   }
   return grid;
 };
+function valuetext(value) {
+  return `${value}ms`;
+}
+const marks = [
+  {
+    value: 10,
+    label: "10ms",
+  },
+  {
+    value: 100,
+    label: "100ms",
+  },
+];
