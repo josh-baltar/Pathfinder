@@ -1,6 +1,6 @@
 .node {
-  width: 35px;
-  height: 35px;
+  width: 45px;
+  height: 45px;
   border-right: 1px solid rgb(175, 216, 248);
   border-bottom: 1px solid rgb(175, 216, 248);
   display: table-cell;
@@ -15,14 +15,21 @@
 
 .node-start {
   background-color: #9cf196;
-  background-image: url("../../images/ghost.png");
+  background-image: url("../../images/josh.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.node-calculating {
+  background-color: #84c1ff;
+  background-image: url("../../images/josh-calculating.png");
   background-repeat: no-repeat;
   background-size: cover;
 }
 
 .node-sad {
   background-color: #84c1ff;
-  background-image: url("../../images/ghost-sad.png");
+  background-image: url("../../images/josh-sad.png");
   background-repeat: no-repeat;
   background-size: cover;
 }

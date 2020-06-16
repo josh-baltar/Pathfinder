@@ -10,13 +10,13 @@ import {
 } from "../../algorithms/dijkstra";
 import { astar } from "../../algorithms/Astar";
 
-const START_NODE_ROW = 10;
-const START_NODE_COL = 13;
-const FINISH_NODE_ROW = 10;
-const FINISH_NODE_COL = 26;
+const ROWS = Math.floor(window.innerHeight / 60);
+const COLS = Math.floor(window.innerWidth / 50);
 
-const ROWS = 20;
-const COLS = 40;
+const START_NODE_ROW = Math.floor(ROWS / 2);
+const START_NODE_COL = Math.floor(COLS / 3);
+const FINISH_NODE_ROW = Math.floor(ROWS / 2);
+const FINISH_NODE_COL = Math.floor((COLS * 2) / 3);
 
 export default class PathfindingVisualizer extends Component {
   constructor() {
@@ -113,7 +113,7 @@ export default class PathfindingVisualizer extends Component {
         const node = visitedNodesInOrder[i];
         if (hasSolution && i === 0) {
           document.getElementById(`node-${node.row}-${node.col}`).className =
-            "node node-start node-visited";
+            "node node-calculating node-visited";
         } else if (!hasSolution && i === visitedNodesInOrder.length - 1) {
           document.getElementById(`node-${node.row}-${node.col}`).className =
             "node node-visited node-sad";
@@ -121,6 +121,8 @@ export default class PathfindingVisualizer extends Component {
           document.getElementById(`node-${node.row}-${node.col}`).className =
             "node node-finish node-visited";
         } else {
+          document.getElementById(`node-${node.row}-${node.col}`).className =
+            "node";
           document.getElementById(`node-${node.row}-${node.col}`).className =
             "node node-visited";
         }
