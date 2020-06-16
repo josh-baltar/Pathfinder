@@ -30,7 +30,8 @@ function updateUnvisitedNeighbors(node, grid, finishNode) {
   const unvisitedNeighbors = getUnvisitedNeighbors(node, grid);
   for (const neighbor of unvisitedNeighbors) {
     neighbor.distance =
-      Math.abs(node.col - finishNode.col) + Math.abs(node.row - finishNode.row);
+      Math.abs(neighbor.col - finishNode.col) +
+      Math.abs(neighbor.row - finishNode.row);
     neighbor.previousNode = node;
   }
 }
