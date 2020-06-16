@@ -15,6 +15,9 @@ const START_NODE_COL = 13;
 const FINISH_NODE_ROW = 10;
 const FINISH_NODE_COL = 26;
 
+const ROWS = 20;
+const COLS = 40;
+
 export default class PathfindingVisualizer extends Component {
   constructor() {
     super();
@@ -239,9 +242,9 @@ export default class PathfindingVisualizer extends Component {
 }
 const getInitialGrid = () => {
   const grid = [];
-  for (let row = 0; row < 20; row++) {
+  for (let row = 0; row < ROWS; row++) {
     const currentRow = [];
-    for (let col = 0; col < 40; col++) {
+    for (let col = 0; col < COLS; col++) {
       currentRow.push(createNode(col, row));
     }
     grid.push(currentRow);
@@ -292,9 +295,9 @@ const generateRandWalls = (grid) => {
 };
 const clearGrid = () => {
   const grid = [];
-  for (let row = 0; row < 20; row++) {
+  for (let row = 0; row < ROWS; row++) {
     const currentRow = [];
-    for (let col = 0; col < 40; col++) {
+    for (let col = 0; col < COLS; col++) {
       const node = createNode(col, row);
       currentRow.push(node);
       if (node.isFinish) {
