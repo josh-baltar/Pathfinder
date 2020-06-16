@@ -21,7 +21,7 @@ export default class PathfindingVisualizer extends Component {
       grid: [],
       gridNeedsReset: false,
       isRunning: false,
-      algorithm: "bfs",
+      algorithm: "dijkstra",
       mouseIsPressed: false,
     };
   }
@@ -157,7 +157,8 @@ export default class PathfindingVisualizer extends Component {
     const { grid } = this.state;
     const startNode = grid[START_NODE_ROW][START_NODE_COL];
     const finishNode = grid[FINISH_NODE_ROW][FINISH_NODE_COL];
-    const { visitedNodesInOrder, path } = bfs(grid, startNode, finishNode);
+    const visitedNodesInOrder = bfs(grid, startNode, finishNode);
+    const path = getNodesInShortestPathOrder(finishNode);
     this.animateAlgorithm(visitedNodesInOrder, path);
   }
 

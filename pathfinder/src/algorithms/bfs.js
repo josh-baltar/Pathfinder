@@ -4,13 +4,17 @@
 export function bfs(grid, startNode, finishNode) {
   const visitedNodesInOrder = [startNode];
   const path = [];
+  startNode.distance = 0;
   let node = startNode;
   while (!node.isFinish) {
     const unvisitedNeighbors = getUnvisitedNeighbors(node, grid);
+    updateUnvisitedNeighbors(node, grid);
     node.isVisited = true;
     for (let i = 0; i < unvisitedNeighbors.length; i++) {
-      path.push(unvisitedNeighbors[i]);
-      visitedNodesInOrder.push(unvisitedNeighbors[i]);
+      if (!unvisitedNeighbors[i].isVisited) {
+        path.push(unvisitedNeighbors[i]);
+        visitedNodesInOrder.push(unvisitedNeighbors[i]);
+      }
       unvisitedNeighbors[i].isVisited = true;
     }
     if (unvisitedNeighbors.length === 0) {
@@ -24,7 +28,7 @@ export function bfs(grid, startNode, finishNode) {
   //push finish node
   visitedNodesInOrder.push(node);
   path.push(node);
-  return { visitedNodesInOrder, path };
+  return visitedNodesInOrder;
 }
 
 function getUnvisitedNeighbors(node, grid) {
@@ -37,4 +41,24 @@ function getUnvisitedNeighbors(node, grid) {
   return neighbors.filter(
     (neighbor) => !neighbor.isVisited && !neighbor.isWall
   );
+}
+
+function updateUnvisitedNeighbors(node, grid) {
+  const unvisitedNeighbors = getUnvisitedNeighbors(node, grid);
+  for (const neighbor of unvisitedNeighbors) {
+    neighbor.distance = node.distance + 1;
+    neighbor.previousNode = node;
+  }
+}
+
+// Backtracks from the finishNode to find the shortest path.
+// Only works when called *after* the dijkstra method above.
+export function getNodesInShortestPathOrder(finishNode) {
+  const nodesInShortestPathOrder = [];
+  let currentNode = finishNode;
+  while (currentNode !== null) {
+    nodesInShortestPathOrder.unshift(currentNode);
+    currentNode = currentNode.previousNode;
+  }
+  return nodesInShortestPathOrder;
 }

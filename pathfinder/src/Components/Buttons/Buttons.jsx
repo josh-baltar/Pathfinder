@@ -21,20 +21,20 @@ class Buttons extends Component {
         >
           <span>DFS</span>
         </div>
-        {/* <div
-            className="btn btn-one"
-            style={{
-              backgroundColor:
-                this.props.algorithm === "bfs"
-                  ? "rgba(255, 255, 255, 0.1)"
-                  : "rgba(255, 255, 255, 0)",
-              textDecoration:
-                this.props.algorithm === "bfs" ? "underline" : "none",
-            }}
-            onClick={() => this.props.handleButtons("bfs")}
-          >
-            <span>BFS</span>
-          </div> */}
+        <div
+          className="btn btn-one"
+          style={{
+            backgroundColor:
+              this.props.algorithm === "bfs"
+                ? "rgba(255, 255, 255, 0.1)"
+                : "rgba(255, 255, 255, 0)",
+            textDecoration:
+              this.props.algorithm === "bfs" ? "underline" : "none",
+          }}
+          onClick={() => this.props.handleButtons("bfs")}
+        >
+          <span>BFS</span>
+        </div>
         <div
           className="btn btn-one"
           style={{
@@ -43,7 +43,7 @@ class Buttons extends Component {
                 ? "rgba(255, 255, 255, 0.1)"
                 : "rgba(255, 255, 255, 0)",
             textDecoration:
-              this.props.evalgorithment === "dijkstra" ? "underline" : "none",
+              this.props.algorithm === "dijkstra" ? "underline" : "none",
           }}
           onClick={() => this.props.handleButtons("dijkstra")}
         >
