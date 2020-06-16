@@ -21,6 +21,7 @@ class Buttons extends Component {
         >
           <span>DFS</span>
         </div>
+
         <div
           className="btn btn-one"
           style={{
@@ -35,6 +36,7 @@ class Buttons extends Component {
         >
           <span>BFS</span>
         </div>
+
         <div
           className="btn btn-one"
           style={{
@@ -49,6 +51,22 @@ class Buttons extends Component {
         >
           <span>Dikjstra's Algorithm</span>
         </div>
+
+        <div
+          className="btn btn-one"
+          style={{
+            backgroundColor:
+              this.props.algorithm === "astar"
+                ? "rgba(255, 255, 255, 0.1)"
+                : "rgba(255, 255, 255, 0)",
+            textDecoration:
+              this.props.algorithm === "astar" ? "underline" : "none",
+          }}
+          onClick={() => this.props.handleButtons("astar")}
+        >
+          <span>A* Search</span>
+        </div>
+
         <div
           className="btn btn-two"
           onClick={() => this.props.handleButtons("start")}
@@ -63,7 +81,11 @@ class Buttons extends Component {
         </div>
 
         <img src={logo} className="App-logo" alt="logo" />
-        <a href="https://github.com/jnbaltar" target="_blank">
+        <a
+          href="https://github.com/jnbaltar"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
           <img src={github} className="github-logo" alt="logo" />
         </a>
       </div>

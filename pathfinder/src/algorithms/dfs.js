@@ -12,9 +12,6 @@ export function dfs(grid, startNode, finishNode) {
       visitedNodesInOrder.push(node);
     }
     node.isVisited = true;
-    if (node.col == 0 && node.row == 0) {
-      console.log("hi");
-    }
     for (let i = 0; i < unvisitedNeighbors.length; i++) {
       path.push(node);
       node = unvisitedNeighbors[i];
