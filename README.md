@@ -12,3 +12,5 @@ Currently supported algorithms:
 Maze generation:
 
 - random 35% walls
+
+Note: make sure to change git remote when deploying to Heroku

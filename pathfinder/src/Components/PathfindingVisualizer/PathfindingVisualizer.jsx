@@ -111,7 +111,7 @@ export default class PathfindingVisualizer extends Component {
         if (hasSolution && i === 0) {
           document.getElementById(`node-${node.row}-${node.col}`).className =
             "node node-start node-visited";
-        } else if (!hasSolution && i === visitedNodesInOrder.length - 2) {
+        } else if (!hasSolution && i === visitedNodesInOrder.length - 1) {
           document.getElementById(`node-${node.row}-${node.col}`).className =
             "node node-visited node-sad";
         } else if (hasSolution && i === visitedNodesInOrder.length - 1) {
