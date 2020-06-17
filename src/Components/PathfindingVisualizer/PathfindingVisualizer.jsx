@@ -28,7 +28,7 @@ export default class PathfindingVisualizer extends Component {
       isRunning: false,
       algorithm: "dijkstra",
       mouseIsPressed: false,
-      speed: 80,
+      speed: 20,
     };
   }
 
