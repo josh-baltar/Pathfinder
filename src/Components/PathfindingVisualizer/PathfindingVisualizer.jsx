@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Typography from "@material-ui/core/Typography";
 import Slider from "@material-ui/core/Slider";
 import "./PathfindingVisualizer.css";
 import Node from "../Node/Node";
@@ -30,7 +29,6 @@ export default class PathfindingVisualizer extends Component {
       algorithm: "dijkstra",
       mouseIsPressed: false,
       speed: 80,
-      setSpeed: 40,
     };
   }
 
@@ -103,8 +101,7 @@ export default class PathfindingVisualizer extends Component {
   };
 
   changeSpeed(speed) {
-    const setSpeed = 120 - speed;
-    this.setState({ speed: speed, setSpeed: setSpeed });
+    this.setState({ speed: speed });
   }
 
   animateAlgorithm(visitedNodesInOrder, path) {
@@ -247,10 +244,8 @@ export default class PathfindingVisualizer extends Component {
             );
           })}
         </div>
-        <div className="discrete-slider" width="300">
-          <Typography id="discrete-slider-text" gutterBottom>
-            Speed
-          </Typography>
+        <div className="discrete-slider">
+          <span className="discrete-slider-text">Speed</span>
           <Slider
             value={this.state.speed}
             onChange={(e, val) => this.changeSpeed(val)}
@@ -261,7 +256,10 @@ export default class PathfindingVisualizer extends Component {
             step={10}
             marks={marks}
             min={10}
-            max={100}
+            max={110}
+            style={{
+              ...styles.slider,
+            }}
           />
         </div>
       </>
@@ -352,7 +350,16 @@ const marks = [
     label: "10ms",
   },
   {
-    value: 100,
-    label: "100ms",
+    value: 60,
+    label: "60ms",
+  },
+  {
+    value: 110,
+    label: "110ms",
   },
 ];
+const styles = {
+  slider: {
+    color: "#66a182",
+  },
+};

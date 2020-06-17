@@ -18,4 +18,9 @@
 .discrete-slider {
   width: 50%;
   display: inline-block;
+  font-family: "Open Sans Condensed", sans-serif;
+}
+
+.mui-color {
+  color: #66a182;
 }
