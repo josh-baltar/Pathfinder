@@ -1,11 +1,11 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "d73096b48a3d7f766eb48fc581c5558a",
+    "revision": "7d98e9c0e20c604a694e3360a5cebcfe",
     "url": "/Pathfinder/index.html"
   },
   {
-    "revision": "0355f4eae44d19265cc1",
-    "url": "/Pathfinder/static/css/main.bb60b317.chunk.css"
+    "revision": "a1f94f96ff61bb42bdc8",
+    "url": "/Pathfinder/static/css/main.274b649c.chunk.css"
   },
   {
     "revision": "6b73c4fc9584bc6e251f",
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/Pathfinder/static/js/2.397a13f8.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "0355f4eae44d19265cc1",
-    "url": "/Pathfinder/static/js/main.e729f2d2.chunk.js"
+    "revision": "a1f94f96ff61bb42bdc8",
+    "url": "/Pathfinder/static/js/main.9c9b9e10.chunk.js"
   },
   {
     "revision": "8a41312bfe2329ad4cb0",
@@ -40,7 +40,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/Pathfinder/static/media/josh.7bce9fd2.png"
   },
   {
-    "revision": "5d5d9eefa31e5e13a6610d9fa7a283bb",
-    "url": "/Pathfinder/static/media/logo.5d5d9eef.svg"
+    "revision": "ee7cd8ed2dcec943251eb2763684fc6f",
+    "url": "/Pathfinder/static/media/logo.ee7cd8ed.svg"
   }
 ]);
