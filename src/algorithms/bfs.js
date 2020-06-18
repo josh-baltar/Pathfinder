@@ -13,13 +13,13 @@ export function bfs(grid, startNode, finishNode) {
 
     //check if node is defined
     if (!node) {
-      return visitedNodesInOrder;
+      break;
     }
 
     // check if we found the finish node
     if (node.isFinish) {
       node.isVisited = true;
-      return visitedNodesInOrder;
+      break;
     }
 
     // otherwise check neighboring cells
