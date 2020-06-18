@@ -105,9 +105,7 @@ export default class PathfindingVisualizer extends Component {
   }
 
   animateAlgorithm(visitedNodesInOrder, path) {
-    const hasSolution = !!visitedNodesInOrder
-      ? visitedNodesInOrder.slice(-1)[0].isFinish
-      : false;
+    const hasSolution = !!path ? path.slice(-1)[0].isFinish : false;
     for (let i = 0; i <= visitedNodesInOrder.length; i++) {
       if (i === visitedNodesInOrder.length) {
         setTimeout(() => {
@@ -117,16 +115,16 @@ export default class PathfindingVisualizer extends Component {
       }
       setTimeout(() => {
         const node = visitedNodesInOrder[i];
-        if (i === 0) {
-          document.getElementById(`node-${node.row}-${node.col}`).className =
-            "node node-calculating node-visited";
-        } else if (!hasSolution && i === visitedNodesInOrder.length - 1) {
-          document.getElementById(`node-${node.row}-${node.col}`).className =
-            "node node-visited node-sad";
+        if (!hasSolution && i === visitedNodesInOrder.length - 1) {
           document.getElementById(
             `node-${START_NODE_ROW}-${START_NODE_COL}`
           ).className = "node node-visited";
-        } else if (hasSolution && i === visitedNodesInOrder.length - 1) {
+          document.getElementById(`node-${node.row}-${node.col}`).className =
+            "node node-visited node-sad";
+        } else if (i === 0) {
+          document.getElementById(`node-${node.row}-${node.col}`).className =
+            "node node-calculating node-visited";
+        } else if (hasSolution && visitedNodesInOrder[i].isFinish) {
           document.getElementById(`node-${node.row}-${node.col}`).className =
             "node node-finish node-visited";
         } else {
