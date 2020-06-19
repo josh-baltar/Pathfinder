@@ -12,11 +12,7 @@ class Buttons extends Component {
         <div
           className="btn btn-one"
           style={{
-            backgroundColor:
-              algorithm === "dfs"
-                ? "rgba(255, 255, 255, 0.1)"
-                : "rgba(255, 255, 255, 0)",
-            textDecoration: algorithm === "dfs" ? "underline" : "none",
+            ...styles(algorithm, "dfs"),
           }}
           onClick={() => handleButtons("dfs")}
         >
@@ -26,11 +22,7 @@ class Buttons extends Component {
         <div
           className="btn btn-one"
           style={{
-            backgroundColor:
-              algorithm === "bfs"
-                ? "rgba(255, 255, 255, 0.1)"
-                : "rgba(255, 255, 255, 0)",
-            textDecoration: algorithm === "bfs" ? "underline" : "none",
+            ...styles(algorithm, "bfs"),
           }}
           onClick={() => handleButtons("bfs")}
         >
@@ -40,11 +32,7 @@ class Buttons extends Component {
         <div
           className="btn btn-one"
           style={{
-            backgroundColor:
-              algorithm === "dijkstra"
-                ? "rgba(255, 255, 255, 0.1)"
-                : "rgba(255, 255, 255, 0)",
-            textDecoration: algorithm === "dijkstra" ? "underline" : "none",
+            ...styles(algorithm, "dijkstra"),
           }}
           onClick={() => handleButtons("dijkstra")}
         >
@@ -54,11 +42,7 @@ class Buttons extends Component {
         <div
           className="btn btn-one"
           style={{
-            backgroundColor:
-              algorithm === "astar"
-                ? "rgba(255, 255, 255, 0.1)"
-                : "rgba(255, 255, 255, 0)",
-            textDecoration: algorithm === "astar" ? "underline" : "none",
+            ...styles(algorithm, "astar"),
           }}
           onClick={() => handleButtons("astar")}
         >
@@ -84,5 +68,13 @@ class Buttons extends Component {
     );
   }
 }
+
+const styles = (algorithm, buttonAlgorithm) => ({
+  backgroundColor:
+    algorithm === buttonAlgorithm
+      ? "rgba(255, 255, 255, 0.1)"
+      : "rgba(255, 255, 255, 0)",
+  textDecoration: algorithm === buttonAlgorithm ? "underline" : "none",
+});
 
 export default Buttons;
