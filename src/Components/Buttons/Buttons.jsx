@@ -5,19 +5,20 @@ import "./Buttons.css";
 
 class Buttons extends Component {
   render() {
+    const algorithm = this.props.algorithm;
+    const handleButtons = this.props.handleButtons;
     return (
       <div className="box-1">
         <div
           className="btn btn-one"
           style={{
             backgroundColor:
-              this.props.algorithm === "dfs"
+              algorithm === "dfs"
                 ? "rgba(255, 255, 255, 0.1)"
                 : "rgba(255, 255, 255, 0)",
-            textDecoration:
-              this.props.algorithm === "dfs" ? "underline" : "none",
+            textDecoration: algorithm === "dfs" ? "underline" : "none",
           }}
-          onClick={() => this.props.handleButtons("dfs")}
+          onClick={() => handleButtons("dfs")}
         >
           <span>DFS</span>
         </div>
@@ -26,13 +27,12 @@ class Buttons extends Component {
           className="btn btn-one"
           style={{
             backgroundColor:
-              this.props.algorithm === "bfs"
+              algorithm === "bfs"
                 ? "rgba(255, 255, 255, 0.1)"
                 : "rgba(255, 255, 255, 0)",
-            textDecoration:
-              this.props.algorithm === "bfs" ? "underline" : "none",
+            textDecoration: algorithm === "bfs" ? "underline" : "none",
           }}
-          onClick={() => this.props.handleButtons("bfs")}
+          onClick={() => handleButtons("bfs")}
         >
           <span>BFS</span>
         </div>
@@ -41,13 +41,12 @@ class Buttons extends Component {
           className="btn btn-one"
           style={{
             backgroundColor:
-              this.props.algorithm === "dijkstra"
+              algorithm === "dijkstra"
                 ? "rgba(255, 255, 255, 0.1)"
                 : "rgba(255, 255, 255, 0)",
-            textDecoration:
-              this.props.algorithm === "dijkstra" ? "underline" : "none",
+            textDecoration: algorithm === "dijkstra" ? "underline" : "none",
           }}
-          onClick={() => this.props.handleButtons("dijkstra")}
+          onClick={() => handleButtons("dijkstra")}
         >
           <span>Dikjstra's Algorithm</span>
         </div>
@@ -56,27 +55,20 @@ class Buttons extends Component {
           className="btn btn-one"
           style={{
             backgroundColor:
-              this.props.algorithm === "astar"
+              algorithm === "astar"
                 ? "rgba(255, 255, 255, 0.1)"
                 : "rgba(255, 255, 255, 0)",
-            textDecoration:
-              this.props.algorithm === "astar" ? "underline" : "none",
+            textDecoration: algorithm === "astar" ? "underline" : "none",
           }}
-          onClick={() => this.props.handleButtons("astar")}
+          onClick={() => handleButtons("astar")}
         >
           <span>A* Search</span>
         </div>
 
-        <div
-          className="btn btn-two"
-          onClick={() => this.props.handleButtons("start")}
-        >
+        <div className="btn btn-two" onClick={() => handleButtons("start")}>
           <span>Start</span>
         </div>
-        <div
-          className="btn btn-one"
-          onClick={() => this.props.handleButtons("mazeRand")}
-        >
+        <div className="btn btn-one" onClick={() => handleButtons("mazeRand")}>
           <span>Generate Maze</span>
         </div>
 
