@@ -22,6 +22,7 @@ const FINISH_NODE_COL = Math.floor((COLS * 4) / 5);
 export default class PathfindingVisualizer extends Component {
   constructor() {
     super();
+    // this.handleLoad = this.handleLoad.bind(this);
     this.state = {
       grid: [],
       gridNeedsReset: false,
@@ -35,10 +36,19 @@ export default class PathfindingVisualizer extends Component {
   componentDidMount() {
     const grid = getInitialGrid();
     this.setState({ grid });
+    // window.addEventListener("load", this.handleLoad);
+  }
+
+  componentWillUnmount() {
+    // window.removeEventListener("load", this.handleLoad);
   }
 
   componentDidUpdate() {
     console.log("Grid Updated");
+  }
+
+  handleLoad() {
+    this.generateBorder();
   }
 
   handleMouseDown(row, col) {
@@ -200,9 +210,29 @@ export default class PathfindingVisualizer extends Component {
     this.animateAlgorithm(visitedNodesInOrder, nodesInShortestPathOrder);
   }
 
+  generateBorder() {
+    //unfinished
+    const newGrid = this.state.grid.slice();
+    for (let row = 0; row < newGrid.length; row++) {
+      for (let col = 0; col < newGrid[0].length; col++) {
+        setTimeout(() => {
+          if (!newGrid[row][col].isFinish && !newGrid[row][col].isStart) {
+            const node = newGrid[row][col];
+            const newNode = {
+              ...node,
+              isWall: true,
+            };
+            newGrid[row][col] = newNode;
+          }
+        }, 10 * (col + 10 * row));
+      }
+    }
+    this.setState({ grid: newGrid });
+  }
+
   generateRand() {
     const newGrid = generateRandWalls(this.state.grid);
-    this.setState({ grid: newGrid, mouseIsPressed: true });
+    this.setState({ grid: newGrid });
   }
 
   render() {
@@ -303,6 +333,7 @@ const getNewGridWithWallToggled = (grid, row, col) => {
   newGrid[row][col] = newNode;
   return newGrid;
 };
+
 const generateRandWalls = (grid) => {
   const newGrid = grid.slice();
   for (let row = 0; row < newGrid.length; row++) {
