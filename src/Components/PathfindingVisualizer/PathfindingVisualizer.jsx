@@ -52,13 +52,16 @@ export default class PathfindingVisualizer extends Component {
   }
 
   handleMouseDown(row, col) {
-    const newGrid = getNewGridWithWallToggled(this.state.grid, row, col);
+    const grid = this.state.grid;
+    const newGrid = getNewGridWithWallToggled(grid, row, col);
     this.setState({ grid: newGrid, mouseIsPressed: true });
   }
 
   handleMouseEnter(row, col) {
-    if (!this.state.mouseIsPressed) return;
-    const newGrid = getNewGridWithWallToggled(this.state.grid, row, col);
+    const mouseIsPressed = this.state.mouseIsPressed;
+    const grid = this.state.grid;
+    if (!mouseIsPressed) return;
+    const newGrid = getNewGridWithWallToggled(grid, row, col);
     this.setState({ grid: newGrid });
   }
 
@@ -67,6 +70,8 @@ export default class PathfindingVisualizer extends Component {
   }
 
   handleButtons = (event) => {
+    const algorithm = this.state.algorithm;
+    const gridNeedsReset = this.state.gridNeedsReset;
     switch (event) {
       case "dfs":
         this.setState({ algorithm: "dfs" });
@@ -84,17 +89,17 @@ export default class PathfindingVisualizer extends Component {
         this.generateRand();
         break;
       case "start":
-        if (!this.state.gridNeedsReset) {
-          if (this.state.algorithm === "dfs") {
+        if (!gridNeedsReset) {
+          if (algorithm === "dfs") {
             this.visualizeDFS();
             this.setState({ gridNeedsReset: true });
-          } else if (this.state.algorithm === "bfs") {
+          } else if (algorithm === "bfs") {
             this.visualizeBFS();
             this.setState({ gridNeedsReset: true });
-          } else if (this.state.algorithm === "dijkstra") {
+          } else if (algorithm === "dijkstra") {
             this.visualizeDijkstra();
             this.setState({ gridNeedsReset: true });
-          } else if (this.state.algorithm === "astar") {
+          } else if (algorithm === "astar") {
             this.visualizeAstar();
             this.setState({ gridNeedsReset: true });
           }
@@ -115,12 +120,13 @@ export default class PathfindingVisualizer extends Component {
   }
 
   animateAlgorithm(visitedNodesInOrder, path) {
+    const speed = this.state.speed;
     const hasSolution = !!path ? path.slice(-1)[0].isFinish : false;
     for (let i = 0; i <= visitedNodesInOrder.length; i++) {
       if (i === visitedNodesInOrder.length) {
         setTimeout(() => {
           this.animatePath(path, hasSolution);
-        }, this.state.speed * i);
+        }, speed * i);
         return;
       }
       setTimeout(() => {
@@ -143,11 +149,12 @@ export default class PathfindingVisualizer extends Component {
           document.getElementById(`node-${node.row}-${node.col}`).className =
             "node node-visited";
         }
-      }, this.state.speed * i);
+      }, speed * i);
     }
   }
 
   animatePath(path, hasSolution) {
+    const speed = this.state.speed;
     for (let i = 0; i < path.length; i++) {
       setTimeout(() => {
         const node = path[i];
@@ -161,7 +168,7 @@ export default class PathfindingVisualizer extends Component {
           document.getElementById(`node-${node.row}-${node.col}`).className =
             "node node-shortest-path";
         }
-      }, this.state.speed * i);
+      }, speed * i);
     }
   }
 
@@ -237,13 +244,12 @@ export default class PathfindingVisualizer extends Component {
 
   render() {
     const { grid, mouseIsPressed } = this.state;
+    const speed = this.state.speed;
+    const algorithm = this.state.algorithm;
     return (
       <>
         {/* Buttons */}
-        <Buttons
-          handleButtons={this.handleButtons}
-          algorithm={this.state.algorithm}
-        />
+        <Buttons handleButtons={this.handleButtons} algorithm={algorithm} />
 
         <div className="instructions">
           <span>Pick an algorithm and hit Start!</span>
@@ -278,7 +284,7 @@ export default class PathfindingVisualizer extends Component {
         <div className="discrete-slider">
           <span className="discrete-slider-text">Speed</span>
           <Slider
-            value={this.state.speed}
+            value={speed}
             onChange={(e, val) => this.changeSpeed(val)}
             defaultValue={30}
             getAriaValueText={valuetext}
