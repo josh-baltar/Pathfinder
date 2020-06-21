@@ -10,8 +10,8 @@ export function dfs(grid, startNode, finishNode) {
     const unvisitedNeighbors = getUnvisitedNeighbors(node, grid);
     if (!node.isVisited) {
       visitedNodesInOrder.push(node);
+      node.isVisited = true;
     }
-    node.isVisited = true;
     for (let i = 0; i < unvisitedNeighbors.length; i++) {
       path.push(node);
       node = unvisitedNeighbors[i];
@@ -21,6 +21,7 @@ export function dfs(grid, startNode, finishNode) {
       if (path.length === 0) {
         break;
       }
+      visitedNodesInOrder.push(node);
       node = path.pop();
     }
   }

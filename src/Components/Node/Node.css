@@ -44,7 +44,38 @@
   animation-fill-mode: forwards;
   animation-play-state: running;
 }
+.node-visited-again {
+  animation-name: visitedAnimation2;
+  animation-duration: 0.6s;
+  animation-timing-function: ease-out;
+  animation-delay: 0;
+  animation-direction: alternate;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  animation-play-state: running;
+}
 
+@keyframes visitedAnimation2 {
+  0% {
+    transform: scale(0.3);
+    background-color: #d6eaff;
+    border-radius: 100%;
+  }
+
+  50% {
+    background-color: #add6ff;
+  }
+
+  75% {
+    transform: scale(1.1);
+    background-color: #add6ff;
+  }
+
+  100% {
+    transform: scale(1);
+    background-color: #84c1ff;
+  }
+}
 @keyframes visitedAnimation {
   0% {
     transform: scale(0.3);
