@@ -260,7 +260,7 @@ export default class PathfindingVisualizer extends Component {
         <div className="instructions">
           <span>Pick an algorithm and hit Start!</span>
         </div>
-        <div className="grid">
+        <div className="grid" onMouseLeave={() => this.handleMouseUp()}>
           {grid.map((row, rowIdx) => {
             return (
               <div key={rowIdx}>
