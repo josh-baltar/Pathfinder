@@ -39,5 +39,8 @@
   },
   "devDependencies": {
     "gh-pages": "^3.0.0"
+  },
+  "overrides": {
+    "browserslist": "^4.28.9"
   }
 }
